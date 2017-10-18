@@ -1,0 +1,160 @@
+<h2 class="col-md-12">Nauja knyga</h2>
+<div class="col-md-6 mx-auto border border-secondary mt-5 mb-5 p-3 pb-5">
+    <form [formGroup]="form">
+        <div *ngIf="edit" class="row float-right">
+            <div class="col-md-12 mb-3">
+                <button class="btn btn-warning" type="button" (click)="onRemove()">Ištrinti</button>
+            </div>
+            </div>
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label for="name">Knygos Pavadinimas</label>
+                <input type="text"
+                       class="form-control"
+                       formControlName="name"
+                       id="name"
+                       placeholder="Pavadinimas"
+                       required
+                       [ngClass]="fieldsInvalid.name ? 'is-invalid' : ''">
+                <div *ngIf="fieldsInvalid.name" class="invalid-feedback">
+                    Įveskite knygos pavadinimą.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label for="author">Knygos autorius</label>
+                <input type="text"
+                       class="form-control"
+                       formControlName="author"
+                       id="author"
+                       placeholder="Autorius"
+                       required
+                       [ngClass]="fieldsInvalid.author ? 'is-invalid' : ''">
+                <div *ngIf="fieldsInvalid.author" class="invalid-feedback">
+                    Įveskite knygos autorių.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label for="year">Leidimo metai</label>
+                <input type="number"
+                       class="form-control"
+                       formControlName="year"
+                       id="year"
+                       placeholder="Metai"
+                       required
+                       [min]="0"
+                       [max]="2017"
+                       [ngClass]="fieldsInvalid.year ? 'is-invalid' : ''">
+                <div *ngIf="fieldsInvalid.year" class="invalid-feedback">
+                    Įveskite knygos leidimo metus.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label for="types">Knygos tipas</label>
+                <select id="types"
+                        class="custom-select d-block"
+                        required
+                        formControlName="type"
+                        required
+                        [ngClass]="fieldsInvalid.types ? 'is-invalid' : ''">
+                    <option [value]="null" disabled>Pasirinkite tipą</option>
+                    <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+                </select>
+                <div *ngIf="fieldsInvalid.types" class="invalid-feedback">
+                    Pasirinkite knygos tipą.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label for="city">Miestas</label>
+                <select id="city"
+                        class="custom-select d-block"
+                        required
+                        formControlName="city"
+                        required
+                        [ngClass]="fieldsInvalid.city ? 'is-invalid' : ''">
+                    <option [value]="null">Pasirinkite miestą</option>
+                    <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+                </select>
+                <div *ngIf="fieldsInvalid.city" class="invalid-feedback">
+                    Pasirinkite miestą
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label for="pages">Puslapių skaičius</label>
+                <input type="number"
+                       class="form-control"
+                       formControlName="pages"
+                       id="pages"
+                       placeholder="Puslapių skaičius"
+                       required
+                       [min]="0"
+                       [max]="10000"
+                       [ngClass]="fieldsInvalid.pages ? 'is-invalid' : ''">
+                <div *ngIf="fieldsInvalid.pages" class="invalid-feedback">
+                    Įveskite knygos puslapių skaičių.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label class="custom-control custom-checkbox">
+                    <input type="checkbox"
+                           class="custom-control-input"
+                           formControlName="tradable">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Knyga galima keistis</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label class="custom-control custom-checkbox">
+                    <input type="checkbox"
+                           formControlName="forSell"
+                           class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Knyga parduodama</span>
+                </label>
+            </div>
+        </div>
+
+        <div *ngIf="form.controls.forSell.value" class="row">
+            <div class="col-md-12 mb-3">
+                <label for="price">Kaina</label>
+                <input type="number"
+                       class="form-control"
+                       formControlName="price"
+                       id="price"
+                       placeholder="Kaina"
+                       [min]="0">
+            </div>
+        </div>
+
+        <div class="float-right">
+            <button type="button"
+                    class="btn btn-primary"
+                    (click)="save()">{{ edit ? 'Išsaugoti' : 'Sukurti'}}
+            </button>
+            <button type="button"
+                    class="btn btn-light"
+                    (click)="cancel()">Atšaukti
+            </button>
+        </div>
+    </form>
+</div>

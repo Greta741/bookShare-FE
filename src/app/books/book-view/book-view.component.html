@@ -1,0 +1,43 @@
+<div *ngIf="book" class="border border-secondary col-md-8 mb-5 mt-5 mx-auto p-3">
+    <div>
+        <h3>{{ book.name }}</h3>
+        <h4>{{ book.author }}</h4>
+        <h5>{{ book.types }}</h5>
+    </div>
+    <div class="m-3">
+        <div class="m-1">
+            Leidimo metai: {{ book.year }}
+        </div>
+        <div class="m-1">
+            Puslapių skaičius: {{ book.pages }}
+        </div>
+        <div class="m-1">
+            Keičiama:
+            <div class="d-inline">{{ book.tradable ? 'Taip' : 'Ne' }}</div>
+        </div>
+        <div class="m-1">
+            Parduodama:
+            <div class="d-inline">{{ book.forSell ? 'Taip' : 'Ne'}}</div>
+        </div>
+        <div *ngIf="book.forSell" class="m-1">
+            Kaina: {{ book.price }}
+        </div>
+    </div>
+    <ng-container *ngIf="book.tradable || book.forSell">
+        <h5>Kontaktai:</h5>
+        <div class="m-3">
+            <div class="m-1">
+                Vardas: {{ book.userDetails?.name }}
+            </div>
+            <div class="m-1">
+                El. pašto adresas: <a [href]="'mailto:' + book.userDetails?.email">{{ book.userDetails?.email }}</a>
+            </div>
+            <div class="m-1">
+                Telefono numeris: <a [href]="'tel:' + book.userDetails?.phone">{{ book.userDetails?.phone }}</a>
+            </div>
+        </div>
+    </ng-container>
+</div>
+<div *ngIf="failedToFind" class="border border-secondary col-md-8 mb-5 mt-5 mx-auto p-3">
+    <h1>Nepavyko rasti knygos</h1>
+</div>

@@ -1,0 +1,105 @@
+<h2 class="col-md-12">Registruotis</h2>
+<div class="col-md-6 mx-auto border border-secondary mt-5 mb-5 p-3 pb-5">
+    <form [formGroup]="form">
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label for="name">Vardas</label>
+                <input type="text"
+                       class="form-control"
+                       formControlName="name"
+                       id="name"
+                       placeholder="Vardas"
+                       required
+                       [ngClass]="fieldsInvalid.name ? 'is-invalid' : ''">
+                <div *ngIf="fieldsInvalid.name" class="invalid-feedback">
+                    Įveskite savo vardą.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label for="email">El. pašto adresas</label>
+                <input type="email"
+                       class="form-control"
+                       formControlName="email"
+                       id="email"
+                       placeholder="El. pašto adresas"
+                       required
+                       [ngClass]="fieldsInvalid.email ? 'is-invalid' : ''">
+                <div *ngIf="fieldsInvalid.email" class="invalid-feedback">
+                    Įveskite tinkamą el. pašto adresą.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label for="phone">Telefono numeris</label>
+                <input type="number"
+                       class="form-control"
+                       formControlName="phone"
+                       id="phone"
+                       placeholder="Telefono numeris"
+                       required
+                       [ngClass]="fieldsInvalid.phone ? 'is-invalid' : ''">
+                <div *ngIf="fieldsInvalid.phone" class="invalid-feedback">
+                    Įveskite savo telefono numerį.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label for="password">Įveskite slaptažodį</label>
+                <input type="password"
+                       class="form-control"
+                       formControlName="password"
+                       id="password"
+                       placeholder="Slaptažodis"
+                       required
+                       [ngClass]="fieldsInvalid.password.invalid || fieldsInvalid.password.length || fieldsInvalid.passwordsMatch  ? 'is-invalid' : ''">
+                <div *ngIf="fieldsInvalid.password.invalid" class="invalid-feedback">
+                    Įveskite slaptažodį.
+                </div>
+                <div *ngIf="fieldsInvalid.password.length" class="invalid-feedback">
+                    Slaptažodis turi būti bent 8 raidžių.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label for="repeatPassword">Pakartokite slaptažodį</label>
+                <input type="password"
+                       class="form-control"
+                       formControlName="repeatPassword"
+                       id="repeatPassword"
+                       placeholder="Pakartokite slaptažodį"
+                       required
+                       [ngClass]="fieldsInvalid.repeatPassword.invalid || fieldsInvalid.repeatPassword.length || fieldsInvalid.passwordsMatch ? 'is-invalid' : ''">
+                <div *ngIf="fieldsInvalid.repeatPassword.invalid" class="invalid-feedback">
+                    Įveskite slaptažodį dar kartą.
+                </div>
+                <div *ngIf="fieldsInvalid.repeatPassword.length" class="invalid-feedback">
+                    Slaptažodis turi būti bent 8 raidžių.
+                </div>
+                <div *ngIf="fieldsInvalid.passwordsMatch"
+                     class="invalid-feedback">
+                    Slaptažodžiai nesutampa.
+                </div>
+            </div>
+        </div>
+
+        <div class="float-right">
+            <button type="button"
+                    class="btn btn-primary"
+                    (click)="register()">Registruotis
+            </button>
+            <button type="button"
+                    class="btn btn-light"
+                    (click)="cancel()">Atšaukti
+            </button>
+        </div>
+    </form>
+</div>

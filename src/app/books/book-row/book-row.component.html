@@ -1,0 +1,20 @@
+<button class="row" [routerLink]="'/book/' + book._id">
+    <div class="col-md-2">
+        {{ book.name }}
+    </div>
+    <div class="col-md-2">
+        {{ book.author }}
+    </div>
+    <div class="col-md-2">
+        {{ book.types }}
+    </div>
+    <div class="col-md-2">
+        {{ book.tradable ? 'Keičiama' : 'Nekeičiama' }}
+    </div>
+    <div class="col-md-2">
+        {{ book.forSell ? 'Parduodama' : 'Neparduodama' }}
+    </div>
+    <div class="col-md-2">
+        <a class="float-right" [routerLink]="'/edit/' + book._id">Redaguoti</a>
+    </div>
+</button>

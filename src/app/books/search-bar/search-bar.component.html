@@ -1,0 +1,39 @@
+<div class="search-bar p-3 mb-3">
+    <form [formGroup]="form">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <input type="text"
+                       class="form-control"
+                       formControlName="query"
+                       id="query"
+                       placeholder="Įveskite knygos pavadinimą arba autorių">
+            </div>
+
+            <div class="mb-3 ml-3">
+                <select id="types"
+                        class="custom-select d-block"
+                        formControlName="types">
+                    <option [value]="null">Pasirinkite tipą</option>
+                    <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+                </select>
+            </div>
+
+            <div class="mb-3 ml-3">
+                <select id="city"
+                        class="custom-select d-block"
+                        formControlName="city">
+                    <option [value]="null">Pasirinkite miestą</option>
+                    <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+                </select>
+            </div>
+
+            <div class="ml-3">
+                <button type="button"
+                        class="btn btn-primary"
+                        (click)="search()">Ieškoti
+                </button>
+            </div>
+        </div>
+
+    </form>
+</div>
