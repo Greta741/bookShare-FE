@@ -8,13 +8,13 @@
     <div class="col-md-2">
         {{ book.types }}
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 cell">
         {{ book.tradable ? 'Keičiama' : 'Nekeičiama' }}
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 cell">
         {{ book.forSell ? 'Parduodama' : 'Neparduodama' }}
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 cell">
         <a class="float-right" [routerLink]="'/edit/' + book._id">Redaguoti</a>
     </div>
 </button>

@@ -11,8 +11,8 @@
                        id="email"
                        placeholder="El. pašto adresas"
                        required
-                       [ngClass]="fieldsInvalid.email ? 'is-invalid' : ''">
-                <div *ngIf="fieldsInvalid.email" class="invalid-feedback">
+                       [ngClass]="this.form.controls['email'].invalid && this.form.controls['email'].touched ? 'is-invalid' : ''">
+                <div *ngIf="this.form.controls['email'].invalid && this.form.controls['email'].touched" class="invalid-feedback">
                     Įveskite tinkamą el. pašto adresą.
                 </div>
             </div>
@@ -27,8 +27,8 @@
                        id="password"
                        placeholder="Slaptažodis"
                        required
-                       [ngClass]="fieldsInvalid.password ? 'is-invalid' : ''">
-                <div *ngIf="fieldsInvalid.password" class="invalid-feedback">
+                       [ngClass]="this.form.controls['password'].invalid && this.form.controls['password'].touched ? 'is-invalid' : ''">
+                <div *ngIf="this.form.controls['password'].invalid && this.form.controls['password'].touched" class="invalid-feedback">
                     Įveskite slaptažodį.
                 </div>
             </div>

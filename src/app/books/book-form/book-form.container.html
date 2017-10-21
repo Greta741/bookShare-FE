@@ -1,0 +1,18 @@
+<div *ngIf="failedToSave" class="failed-to-save">
+    Nepavyko išsaugoti.
+</div>
+<div *ngIf="!book && edit" class="border border-secondary col-md-8 mb-5 mt-5 mx-auto p-3">
+    <h1>Nepavyko rasti knygos</h1>
+</div>
+<ng-container *ngIf="!failedToFind">
+    <book-form *ngIf="book"
+               [book]="book"
+               [edit]="edit"
+               (update)="updateBook($event)"
+               (remove)="deleteBook($event)">
+    </book-form>
+    <book-form *ngIf="!book"
+               [edit]="false"
+               (create)="createBook($event)">
+    </book-form>
+</ng-container>

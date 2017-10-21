@@ -3,16 +3,17 @@ import { BrowserModule }  from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpModule} from '@angular/http';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BookModule } from './books/book.module';
 import { HeaderModule } from './header/header.module';
 import { UserModule } from './user/user.module';
+import { NotFoundModule } from './not-found/not-found.module';
 import { BooksEffects } from './store/effects/booksEffects';
 import { BooksService } from './store/services/booksService';
 import { reducers } from './store/reducers/index';
-
 
 @NgModule({
     imports: [
@@ -21,10 +22,11 @@ import { reducers } from './store/reducers/index';
         BookModule,
         HeaderModule,
         UserModule,
+        NotFoundModule,
         HttpModule,
         StoreModule.forRoot(reducers),
         EffectsModule.forRoot([BooksEffects]),
-        // StoreDevtoolsModule.instrumentOnlyWithExtension()
+        StoreDevtoolsModule.instrument()
     ],
     declarations: [
         AppComponent

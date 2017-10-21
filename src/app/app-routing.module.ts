@@ -5,6 +5,7 @@ import { RegisterComponent } from './user/register/register.component';
 import { BookViewComponent } from './books/book-view/book-view.component';
 import { BookTableContainer } from './books/book-table/book-table.container';
 import { BookFormContainer } from './books/book-form/book-form.container';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -12,7 +13,8 @@ const routes: Routes = [
     { path: 'new', component: BookFormContainer },
     { path: '', component: BookTableContainer },
     { path: 'book/:id', component: BookViewComponent },
-    { path: 'edit/:id', component: BookFormContainer }
+    { path: 'edit/:id', component: BookFormContainer },
+    { path: '**', component: NotFoundComponent }
 
 
 ];

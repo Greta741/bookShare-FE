@@ -10,9 +10,9 @@
                        id="name"
                        placeholder="Vardas"
                        required
-                       [ngClass]="fieldsInvalid.name ? 'is-invalid' : ''">
-                <div *ngIf="fieldsInvalid.name" class="invalid-feedback">
-                    Įveskite savo vardą.
+                       [ngClass]="this.form.controls['name'].invalid && this.form.controls['name'].touched ? 'is-invalid' : ''">
+                <div *ngIf="this.form.controls['name'].invalid && this.form.controls['name'].touched" class="invalid-feedback">
+                    Blogai įvestas vardas.
                 </div>
             </div>
         </div>
@@ -26,8 +26,8 @@
                        id="email"
                        placeholder="El. pašto adresas"
                        required
-                       [ngClass]="fieldsInvalid.email ? 'is-invalid' : ''">
-                <div *ngIf="fieldsInvalid.email" class="invalid-feedback">
+                       [ngClass]="this.form.controls['email'].invalid && this.form.controls['email'].touched ? 'is-invalid' : ''">
+                <div *ngIf="this.form.controls['email'].invalid && this.form.controls['email'].touched" class="invalid-feedback">
                     Įveskite tinkamą el. pašto adresą.
                 </div>
             </div>
@@ -42,9 +42,9 @@
                        id="phone"
                        placeholder="Telefono numeris"
                        required
-                       [ngClass]="fieldsInvalid.phone ? 'is-invalid' : ''">
-                <div *ngIf="fieldsInvalid.phone" class="invalid-feedback">
-                    Įveskite savo telefono numerį.
+                       [ngClass]="this.form.controls['phone'].invalid && this.form.controls['phone'].touched ? 'is-invalid' : ''">
+                <div *ngIf="this.form.controls['phone'].invalid && this.form.controls['phone'].touched" class="invalid-feedback">
+                    Įveskite tinkamą telefono numerį.
                 </div>
             </div>
         </div>
@@ -58,12 +58,9 @@
                        id="password"
                        placeholder="Slaptažodis"
                        required
-                       [ngClass]="fieldsInvalid.password.invalid || fieldsInvalid.password.length || fieldsInvalid.passwordsMatch  ? 'is-invalid' : ''">
-                <div *ngIf="fieldsInvalid.password.invalid" class="invalid-feedback">
-                    Įveskite slaptažodį.
-                </div>
-                <div *ngIf="fieldsInvalid.password.length" class="invalid-feedback">
-                    Slaptažodis turi būti bent 8 raidžių.
+                       [ngClass]="this.form.controls['password'].invalid && this.form.controls['password'].touched || !passwordMatch ? 'is-invalid' : ''">
+                <div *ngIf="this.form.controls['password'].invalid && this.form.controls['password'].touched" class="invalid-feedback">
+                    Įveskite tinkamą slažodį (bent 8 raidės).
                 </div>
             </div>
         </div>
@@ -77,14 +74,11 @@
                        id="repeatPassword"
                        placeholder="Pakartokite slaptažodį"
                        required
-                       [ngClass]="fieldsInvalid.repeatPassword.invalid || fieldsInvalid.repeatPassword.length || fieldsInvalid.passwordsMatch ? 'is-invalid' : ''">
-                <div *ngIf="fieldsInvalid.repeatPassword.invalid" class="invalid-feedback">
-                    Įveskite slaptažodį dar kartą.
+                       [ngClass]="this.form.controls['repeatPassword'].invalid && this.form.controls['repeatPassword'].touched || !passwordMatch ? 'is-invalid' : ''">
+                <div *ngIf="this.form.controls['repeatPassword'].invalid && this.form.controls['repeatPassword'].touched" class="invalid-feedback">
+                    Įveskite tinkamą slaptažodį (bent 8 raidės).
                 </div>
-                <div *ngIf="fieldsInvalid.repeatPassword.length" class="invalid-feedback">
-                    Slaptažodis turi būti bent 8 raidžių.
-                </div>
-                <div *ngIf="fieldsInvalid.passwordsMatch"
+                <div *ngIf="!passwordMatch"
                      class="invalid-feedback">
                     Slaptažodžiai nesutampa.
                 </div>

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { cities, types } from '../../utils/constants';
 import { Book } from '../../utils/interfaces';
 
@@ -12,7 +13,6 @@ export class BookFormComponent implements OnInit, OnChanges {
     public form: FormGroup;
     public cities: string[];
     public types: string[];
-    public fieldsInvalid: any;
     @Input() book: Book;
     @Input() edit = false;
 
@@ -20,35 +20,17 @@ export class BookFormComponent implements OnInit, OnChanges {
     @Output() update: EventEmitter<Book> = new EventEmitter();
     @Output() remove: EventEmitter<any> = new EventEmitter();
 
-    constructor(private fb: FormBuilder) {}
+    constructor(private fb: FormBuilder,
+                private location: Location) {}
 
     ngOnInit() {
         this.createForm();
         this.cities = cities;
         this.types = types;
-        this.fieldsInvalid = {
-            name: false,
-            author: false,
-            year: false,
-            type: false,
-            city: false,
-            pages: false,
-        }
     }
 
     ngOnChanges() {
         this.createForm();
-    }
-
-    public updateValidFields() {
-        this.fieldsInvalid = {
-            name: this.form.controls.name.value === '',
-            author: this.form.controls.author.value === '',
-            year: this.form.controls.year.value === null || this.form.controls.year.value < 0,
-            type: this.form.controls.types.value === null,
-            city: this.form.controls.city.value === null,
-            pages: this.form.controls.pages.value === null || this.form.controls.pages.value < 0,
-        }
     }
 
     public save() {
@@ -59,7 +41,13 @@ export class BookFormComponent implements OnInit, OnChanges {
                 this.create.emit(this.form.value);
             }
         } else {
-            this.updateValidFields();
+            this.form.controls['name'].markAsTouched();
+            this.form.controls['author'].markAsTouched();
+            this.form.controls['year'].markAsTouched();
+            this.form.controls['type'].markAsTouched();
+            this.form.controls['city'].markAsTouched();
+            this.form.controls['pages'].markAsTouched();
+            this.form.controls['price'].markAsTouched();
         }
     }
 
@@ -69,34 +57,49 @@ export class BookFormComponent implements OnInit, OnChanges {
 
 
     public cancel() {
-        console.log('Cancel');
+        this.location.back();
     }
 
     private createForm() {
-        if (this.book) {
-            this.form = this.fb.group({
-                name: [this.book.name, Validators.required],
-                author: [this.book.author, Validators.required],
-                year: [this.book.year, Validators.required],
-                type: [this.book.type, Validators.required],
-                city: [this.book.city, Validators.required],
-                pages: [this.book.pages, Validators.required],
-                tradable: [this.book.tradable, Validators.required],
-                forSell: [this.book.forSell, Validators.required],
-                price: [this.book.price, Validators.required]
-            });
-        } else {
-            this.form = this.fb.group({
-                name: ['', Validators.required],
-                author: ['', Validators.required],
-                year: [null, Validators.required],
-                type: [null, Validators.required],
-                city: [null, Validators.required],
-                pages: [null, Validators.required],
-                tradable: [true, Validators.required],
-                forSell: [false, Validators.required],
-                price: [0, Validators.required]
-            });
-        }
+        this.form = this.fb.group({
+            name: new FormControl(this.book ? this.book.name : '', [
+                Validators.required,
+                Validators.minLength(3),
+                Validators.maxLength(50)
+            ]),
+            author: new FormControl(this.book ? this.book.author : '', [
+                Validators.required,
+                Validators.minLength(3),
+                Validators.maxLength(50)
+            ]),
+            year: new FormControl(this.book ? this.book.year : null, [
+                Validators.required,
+                Validators.min(1900),
+                Validators.max(2017)
+            ]),
+            type: new FormControl(this.book ? this.book.type : null, [
+                Validators.required,
+            ]),
+            city: new FormControl(this.book ? this.book.city : null, [
+                Validators.required,
+            ]),
+            pages: new FormControl(this.book ? this.book.pages : 0, [
+                Validators.required,
+                Validators.min(0),
+                Validators.max(10000)
+            ]),
+            tradable: new FormControl(this.book ? this.book.tradable : true, [
+                Validators.required,
+            ]),
+            forSell: new FormControl(this.book ? this.book.forSell : false, [
+                Validators.required,
+            ]),
+            price: new FormControl(this.book ? this.book.price : 0, [
+                Validators.required,
+                Validators.min(0),
+                Validators.max(10000)
+            ]),
+        });
     }
+
 }

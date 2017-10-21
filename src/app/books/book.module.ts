@@ -7,7 +7,6 @@ import { BookFormComponent } from './book-form/book-form.component';
 import { BookRowComponent } from './book-row/book-row.component';
 import { BookTableComponent } from './book-table/book-table.component';
 import { BookViewComponent } from './book-view/book-view.component';
-import { SearchBarComponent } from './search-bar/search-bar.component';
 import { BookTableContainer } from './book-table/book-table.container';
 import { BookFormContainer } from './book-form/book-form.container';
 
@@ -22,7 +21,6 @@ import { BookFormContainer } from './book-form/book-form.container';
         BookRowComponent,
         BookTableComponent,
         BookViewComponent,
-        SearchBarComponent,
         BookTableContainer,
         BookFormContainer
     ]

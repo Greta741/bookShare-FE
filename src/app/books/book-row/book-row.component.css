@@ -12,3 +12,9 @@ button {
 button:hover {
     background-color: lightblue;
 }
+
+.cell {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

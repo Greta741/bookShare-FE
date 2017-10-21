@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'login',
@@ -8,36 +9,34 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class LoginComponent implements OnInit {
 
     public form: FormGroup;
-    public fieldsInvalid: any;
 
-    constructor(private fb: FormBuilder) {}
+    constructor(private fb: FormBuilder, private location: Location) {}
 
     ngOnInit() {
         this.form = this.fb.group({
-            email: ['', Validators.required],
-            password: ['', Validators.required]
+            email: new FormControl('', [
+                Validators.required,
+                Validators.email
+            ]),
+            password: new FormControl('', [
+                Validators.required,
+                Validators.minLength(8),
+                Validators.maxLength(50)
+            ]),
         });
-        this.fieldsInvalid = {
-            email: false,
-            password: false
-        }
-    }
-
-    public updateValidFields() {
-        this.fieldsInvalid = {
-            email: Validators.email(this.form.controls.email) !== null,
-            password: this.form.controls.password.value === ''
-        }
     }
 
     public login() {
-        this.updateValidFields();
-        console.log(this.fieldsInvalid);
-        console.log(this.form.value);
+        if (this.form.valid) {
+            console.log('login');
+        } else {
+            this.form.controls['email'].markAsTouched();
+            this.form.controls['password'].markAsTouched();
+        }
     }
 
     public cancel() {
-        console.log('Cancel');
+        this.location.back();
     }
 
 }

@@ -1,0 +1,7 @@
+.failed-to-save {
+    background-color: lightcoral;
+    font-size: 24px;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
