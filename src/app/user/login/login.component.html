@@ -2,6 +2,9 @@
 <div class="col-md-6 mx-auto border border-secondary mt-5 mb-5 p-3 pb-5">
     <form [formGroup]="form">
 
+        <div *ngIf="failedLogin" class="text-danger">
+            Nepavyko prisijungti, bandykite dar kartą.
+        </div>
         <div class="row">
             <div class="col-md-12 mb-3">
                 <label for="email">El. pašto adresas</label>

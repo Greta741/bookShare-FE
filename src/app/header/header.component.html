@@ -5,14 +5,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
-            <li class="nav-item">
+            <li *ngIf="loggedIn" class="nav-item">
                 <a class="nav-link" routerLink="/new">Sukurti</a>
             </li>
-            <li class="nav-item">
+            <li *ngIf="!loggedIn" class="nav-item">
                 <a class="nav-link" routerLink="/login">Prisijungti</a>
             </li>
-            <li class="nav-item">
+            <li *ngIf="!loggedIn" class="nav-item">
                 <a class="nav-link" routerLink="/register">Registruotis</a>
+            </li>
+            <li *ngIf="loggedIn" class="nav-item">
+                <a class="nav-link" (click)="logout()">Atsijungti</a>
             </li>
         </ul>
     </div>

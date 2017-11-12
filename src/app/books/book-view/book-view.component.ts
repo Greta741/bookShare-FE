@@ -12,6 +12,7 @@ export class BookViewComponent {
     public id: string;
     public book: Book;
     public failedToFind = false;
+    public userId: string = '';
 
     constructor(private store: Store<AppState>, private route: ActivatedRoute) {
         this.route.params.subscribe(params => {
@@ -24,5 +25,6 @@ export class BookViewComponent {
                 this.failedToFind = true;
             }
         });
+        this.userId = localStorage.getItem('userId');
     }
 }

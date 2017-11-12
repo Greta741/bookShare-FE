@@ -7,7 +7,12 @@ import { Book } from '../../utils/interfaces';
 })
 export class BookTableComponent implements OnInit {
     @Input() public books: Book[];
+    @Input() public userId: string;
+    public userBooksOnly = false;
 
     ngOnInit() { }
 
+    public filterBooks() {
+        this.userBooksOnly = !this.userBooksOnly;
+    }
 }

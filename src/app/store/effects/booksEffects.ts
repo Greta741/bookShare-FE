@@ -33,7 +33,7 @@ export class BooksEffects {
     @Effect() createBook$ = this.actions$
         .ofType(actions.CREATE_BOOK)
         .switchMap(action => this.booksService.createBook(action))
-        .map(result => new createBookSuccessAction(result))
+        .map(result => new createBookSuccessAction({}))
         .catch((e) => Observable.of(new createBookFailedAction(e)));
 
     @Effect() updateBook$ = this.actions$

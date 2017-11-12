@@ -18,10 +18,12 @@ export class BookFormContainer {
     public failedToFind = false;
     public edit = false;
     public failedToSave = false;
+    public userId: string;
 
     constructor(private store: Store<AppState>,
                 private route: ActivatedRoute,
                 private router: Router) {
+        this.userId = localStorage.getItem('userId');
         this.route.params.subscribe(params => {
             if (params['id']) {
                 this.id = params['id'];
@@ -34,6 +36,12 @@ export class BookFormContainer {
                 this.book = data['book'];
                 if (!data['loading'] && !data['success']) {
                     this.failedToFind = true;
+                } else {
+                    if (!this.userId) {
+                        this.router.navigateByUrl('notFound')
+                    } else if (this.edit && this.book && this.userId !== this.book.userId) {
+                        this.router.navigateByUrl('notFound')
+                    }
                 }
             }
         });

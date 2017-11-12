@@ -1,6 +1,16 @@
 <h2 class="col-md-12">Naujausios knygos</h2>
 <div class="col-md-10 mx-auto mb-5 p-3 pb-5">
-    <div *ngFor="let book of books">
-        <book-row [book]="book"></book-row>
+    <div *ngIf="userId" class="float-right">
+        <button class="btn btn-primary mb-3" (click)="filterBooks()">{{ userBooksOnly ? 'Rodyti viską' : 'Rodyti tik mano' }}</button>
     </div>
+    <ng-container *ngIf="!userBooksOnly">
+        <div *ngFor="let book of books">
+            <book-row [book]="book" [canEdit]="userId === book.userId"></book-row>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="userBooksOnly">
+        <div *ngFor="let book of books">
+            <book-row *ngIf="book.userId === userId" [book]="book" [canEdit]="userId === book.userId"></book-row>
+        </div>
+    </ng-container>
 </div>

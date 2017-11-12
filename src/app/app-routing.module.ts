@@ -10,9 +10,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'book/:id', component: BookViewComponent },
     { path: 'new', component: BookFormContainer },
     { path: '', component: BookTableContainer },
-    { path: 'book/:id', component: BookViewComponent },
     { path: 'edit/:id', component: BookFormContainer },
     { path: '**', component: NotFoundComponent }
 

@@ -8,4 +8,5 @@ import { Book } from "../../utils/interfaces";
 })
 export class BookRowComponent {
     @Input() book: Book;
+    @Input() canEdit = false;
 }

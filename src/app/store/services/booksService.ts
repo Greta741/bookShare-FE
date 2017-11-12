@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Book } from '../../utils/interfaces';
+import { Http, RequestOptions, Headers } from '@angular/http';
 
 @Injectable()
 export class BooksService {
@@ -16,15 +15,22 @@ export class BooksService {
     }
 
     createBook(action: any) {
-        return this.http.post(this.apiRoot, action.payload).map(res => res.json());
+        return this.http.post(this.apiRoot, action.payload, this.getOptions()).map(res => res.json());
     }
 
     updateBook(action: any) {
-        return this.http.put(`${this.apiRoot}/${action.payload.id}`, action.payload.book).map(res => res.json());
+        return this.http.put(`${this.apiRoot}/${action.payload.id}`, action.payload.book, this.getOptions()).map(res => res.json());
     }
 
     deleteBook(action: any) {
-        return this.http.delete(`${this.apiRoot}/${action.payload}`).map(res => res.json());
+        return this.http.delete(`${this.apiRoot}/${action.payload}`, this.getOptions()).map(res => res.json());
+    }
+
+    private getOptions(): RequestOptions {
+        const headers: any = new Headers();
+        headers.set('Content-Type', 'application/json');
+        headers.set('authorization', `Bearer ${localStorage.getItem('token')}`);
+        return new RequestOptions({ headers: headers });
     }
 
 }

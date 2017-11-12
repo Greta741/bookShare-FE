@@ -10,8 +10,8 @@
                        id="name"
                        placeholder="Vardas"
                        required
-                       [ngClass]="this.form.controls['name'].invalid && this.form.controls['name'].touched ? 'is-invalid' : ''">
-                <div *ngIf="this.form.controls['name'].invalid && this.form.controls['name'].touched" class="invalid-feedback">
+                       [ngClass]="form.controls['name'].invalid && form.controls['name'].touched ? 'is-invalid' : ''">
+                <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched" class="invalid-feedback">
                     Blogai įvestas vardas.
                 </div>
             </div>
@@ -26,10 +26,12 @@
                        id="email"
                        placeholder="El. pašto adresas"
                        required
-                       [ngClass]="this.form.controls['email'].invalid && this.form.controls['email'].touched ? 'is-invalid' : ''">
-                <div *ngIf="this.form.controls['email'].invalid && this.form.controls['email'].touched" class="invalid-feedback">
+                       [ngClass]="(form.controls['email'].invalid && form.controls['email'].touched) ||
+                       (emailExists && form.controls['email'].value === previousEmail) ? 'is-invalid' : ''">
+                <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched" class="invalid-feedback">
                     Įveskite tinkamą el. pašto adresą.
                 </div>
+                <div *ngIf="emailExists" class="invalid-feedback">Toks pašto adresas jau yra.</div>
             </div>
         </div>
 
@@ -42,8 +44,8 @@
                        id="phone"
                        placeholder="Telefono numeris"
                        required
-                       [ngClass]="this.form.controls['phone'].invalid && this.form.controls['phone'].touched ? 'is-invalid' : ''">
-                <div *ngIf="this.form.controls['phone'].invalid && this.form.controls['phone'].touched" class="invalid-feedback">
+                       [ngClass]="form.controls['phone'].invalid && form.controls['phone'].touched ? 'is-invalid' : ''">
+                <div *ngIf="form.controls['phone'].invalid && form.controls['phone'].touched" class="invalid-feedback">
                     Įveskite tinkamą telefono numerį.
                 </div>
             </div>
@@ -58,8 +60,9 @@
                        id="password"
                        placeholder="Slaptažodis"
                        required
-                       [ngClass]="this.form.controls['password'].invalid && this.form.controls['password'].touched || !passwordMatch ? 'is-invalid' : ''">
-                <div *ngIf="this.form.controls['password'].invalid && this.form.controls['password'].touched" class="invalid-feedback">
+                       [ngClass]="form.controls['password'].invalid && form.controls['password'].touched || !passwordMatch ? 'is-invalid' : ''">
+                <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched"
+                     class="invalid-feedback">
                     Įveskite tinkamą slažodį (bent 8 raidės).
                 </div>
             </div>
@@ -74,8 +77,9 @@
                        id="repeatPassword"
                        placeholder="Pakartokite slaptažodį"
                        required
-                       [ngClass]="this.form.controls['repeatPassword'].invalid && this.form.controls['repeatPassword'].touched || !passwordMatch ? 'is-invalid' : ''">
-                <div *ngIf="this.form.controls['repeatPassword'].invalid && this.form.controls['repeatPassword'].touched" class="invalid-feedback">
+                       [ngClass]="form.controls['repeatPassword'].invalid && form.controls['repeatPassword'].touched || !passwordMatch ? 'is-invalid' : ''">
+                <div *ngIf="form.controls['repeatPassword'].invalid && form.controls['repeatPassword'].touched"
+                     class="invalid-feedback">
                     Įveskite tinkamą slaptažodį (bent 8 raidės).
                 </div>
                 <div *ngIf="!passwordMatch"
@@ -96,4 +100,14 @@
             </button>
         </div>
     </form>
+</div>
+
+<div #registerModal id="registerSuccess" class="modal-background" [ngClass]="!showModal ? 'hide-modal' : ''">
+    <div class="custom-modal">
+        <h3>Registracija baigta</h3>
+        <p>Galite prisijungti.</p>
+        <div>
+            <button class="btn btn-success" style="margin-left: 75px" routerLink="/login">Prisijungti</button>
+        </div>
+    </div>
 </div>

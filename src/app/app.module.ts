@@ -14,6 +14,9 @@ import { NotFoundModule } from './not-found/not-found.module';
 import { BooksEffects } from './store/effects/booksEffects';
 import { BooksService } from './store/services/booksService';
 import { reducers } from './store/reducers/index';
+import { UserEffects } from "./store/effects/userEffects";
+import { UserService } from "./store/services/userService";
+import { FooterModule } from "./footer/footer.module";
 
 @NgModule({
     imports: [
@@ -23,15 +26,16 @@ import { reducers } from './store/reducers/index';
         HeaderModule,
         UserModule,
         NotFoundModule,
+        FooterModule,
         HttpModule,
         StoreModule.forRoot(reducers),
-        EffectsModule.forRoot([BooksEffects]),
+        EffectsModule.forRoot([BooksEffects, UserEffects]),
         StoreDevtoolsModule.instrument()
     ],
     declarations: [
         AppComponent
     ],
-    providers: [ BooksService ],
+    providers: [ BooksService, UserService ],
     bootstrap: [ AppComponent ]
 })
 export class AppModule { }

@@ -5,10 +5,11 @@ import { getBooksAction } from '../../store/actions/booksActions';
 
 @Component({
     selector: 'book-table-container',
-    template: `<book-table [books]="books"></book-table>`,
+    template: `<book-table [books]="books" [userId]="userId"></book-table>`,
 })
 export class BookTableContainer implements OnInit {
     public books: Book[];
+    public userId: string = '';
 
     constructor(private store: Store<AppState>){
         store.select('books', 'list').subscribe(data => {
@@ -16,9 +17,10 @@ export class BookTableContainer implements OnInit {
                 this.books = data['books'];
             }
         });
+        this.userId = localStorage.getItem('userId');
     }
 
     ngOnInit() {
-        this.store.dispatch(new getBooksAction())
+        this.store.dispatch(new getBooksAction());
     }
 }

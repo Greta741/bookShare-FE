@@ -18,3 +18,13 @@ button:hover {
     white-space: nowrap;
     overflow: hidden;
 }
+
+.row {
+    animation-name: move-up;
+    animation-duration: 2s;
+}
+
+@keyframes move-up {
+    0%   {position: inherit; margin-top: 100%;}
+    100% {position: inherit; margin-top: 0;}
+}

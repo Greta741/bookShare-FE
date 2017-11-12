@@ -1,5 +1,6 @@
 import { ActionReducerMap } from '@ngrx/store';
 import { booksReducer } from './booksReducer';
+import {userReducer} from "./userReducer";
 
 export interface State {
     books: {
@@ -8,8 +9,10 @@ export interface State {
         loading: boolean,
         failed: boolean
     };
+    user: null;
 }
 
 export const reducers = {
-    books: booksReducer
+    books: booksReducer,
+    user: userReducer,
 };

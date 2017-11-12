@@ -9,13 +9,17 @@ export interface Book {
     tradable: boolean,
     forSell: boolean,
     price: number,
-    userDetails?: User
+    userId: string,
+    email: string,
+    phone: string,
 };
 
 export interface User {
+    id: string;
     name: string,
     email: string,
     phone: string
+    password?: string;
  };
 
 export interface BooksState {
@@ -43,6 +47,13 @@ export interface BooksState {
     }
 }
 
+export interface UserState {
+    emailExists: boolean;
+    registerSuccess: boolean;
+    loginSuccess: boolean;
+};
+
  export interface AppState {
-    books: BooksState
+    books: BooksState;
+    user: UserState;
  };

@@ -14,7 +14,7 @@
     <div class="col-md-2 cell">
         {{ book.forSell ? 'Parduodama' : 'Neparduodama' }}
     </div>
-    <div class="col-md-2 cell">
+    <div *ngIf="canEdit" class="col-md-2 cell">
         <a class="float-right" [routerLink]="'/edit/' + book._id">Redaguoti</a>
     </div>
 </button>
