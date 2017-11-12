@@ -1,0 +1,8 @@
+div {
+    font-family: cursive;
+    color: lightgray;
+}
+
+.custom-border {
+    border-top: 1px solid lightgray;
+}
