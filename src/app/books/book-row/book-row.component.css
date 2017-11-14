@@ -19,12 +19,11 @@ button:hover {
     overflow: hidden;
 }
 
-.row {
-    animation-name: move-up;
-    animation-duration: 2s;
-}
-
-@keyframes move-up {
-    0%   {position: inherit; margin-top: 100%;}
-    100% {position: inherit; margin-top: 0;}
+.icon {
+    display: inline-block;
+    width: 5em;
+    height: 5em;
+    stroke-width: 0;
+    stroke: black;
+    fill: black;
 }

@@ -6,3 +6,8 @@ div {
 .custom-border {
     border-top: 1px solid lightgray;
 }
+
+img {
+    max-width: 100%;
+    height: auto;
+}

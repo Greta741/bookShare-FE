@@ -1,20 +1,27 @@
 <button class="row" [routerLink]="'/book/' + book._id">
-    <div class="col-md-2">
+    <div class="col-md-3 col-sm-4">
         {{ book.name }}
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 col-sm-3">
         {{ book.author }}
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 col-sm-2">
         {{ book.types }}
     </div>
-    <div class="col-md-2 cell">
-        {{ book.tradable ? 'Keičiama' : 'Nekeičiama' }}
+    <div class="col-md-2 col-sm-1 cell">
+        <img *ngIf="book.tradable" class="svg-img" src="../../../assets/scales.svg">
+        <div class="content-description">
+            {{ book.tradable ? 'Keičiama' : 'Nekeičiama' }}
+        </div>
     </div>
-    <div class="col-md-2 cell">
-        {{ book.forSell ? 'Parduodama' : 'Neparduodama' }}
+    <div class="col-md-2 col-sm-1 cell">
+        <img *ngIf="book.forSell" class="svg-img" src="../../../assets/money.svg">
+        <div class="content-description">
+            {{ book.forSell ? 'Parduodama' : 'Neparduodama' }}
+        </div>
     </div>
-    <div *ngIf="canEdit" class="col-md-2 cell">
-        <a class="float-right" [routerLink]="'/edit/' + book._id">Redaguoti</a>
+    <div *ngIf="canEdit" class="col-md-1 col-sm-1 cell">
+        <a class="float-right" [routerLink]="'/edit/' + book._id">
+            <img class="svg-img" src="../../../assets/edit.svg"></a>
     </div>
 </button>

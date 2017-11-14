@@ -1,3 +1,28 @@
 button:hover {
     cursor: pointer;
 }
+
+.svg-img {
+    width: 20px
+}
+
+.content-description {
+    color: black;
+    display: inline;
+}
+
+@media (max-width: 720px) {
+    .content-description {
+        display: none;
+    }
+}
+
+.row {
+    animation-name: move-up;
+    animation-duration: 2s;
+}
+
+@keyframes move-up {
+    0%   {position: inherit; margin-top: 100%;}
+    100% {position: inherit; margin-top: 0;}
+}
