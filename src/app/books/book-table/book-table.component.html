@@ -3,7 +3,7 @@
     <div *ngIf="userId" class="float-right">
         <button class="btn btn-primary mb-3" (click)="filterBooks()">{{ userBooksOnly ? 'Rodyti viską' : 'Rodyti tik mano' }}</button>
     </div>
-    <div class="row"></div>
+    <div class="book-row"></div>
     <ng-container *ngIf="!userBooksOnly">
         <div *ngFor="let book of books">
             <book-row [book]="book" [canEdit]="userId === book.userId"></book-row>

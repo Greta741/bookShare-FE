@@ -17,7 +17,7 @@ button:hover {
     }
 }
 
-.row {
+.book-row {
     animation-name: move-up;
     animation-duration: 2s;
 }
